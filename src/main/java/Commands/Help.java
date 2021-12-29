@@ -16,6 +16,7 @@ public class Help extends ListenerAdapter {
                 .setColor(Color.CYAN)
                 .addField("Commands", "Here are the commands!\n\n" +
                         "- **!help** => Shows this menu.\n" +
+                        "- **!info** => Shows information on the bot and the link to the code.\n" +
                         "- **!study guide** => Sends the study guide link.\n" +
                         "- **!aliases** => Alternate commands to use to shorten your typing.\n" +
                         "- **!game help** => Get help for the economy game.\n" +
