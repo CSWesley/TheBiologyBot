@@ -17,8 +17,8 @@ public class Help extends ListenerAdapter {
                 .addField("Commands", "Here are the commands!\n\n" +
                         "- **!help** => Shows this menu.\n" +
                         "- **!study guide** => Sends the study guide link.\n" +
-                        "- **!game help** => Get help for the economy game.\n" +
                         "- **!aliases** => Alternate commands to use to shorten your typing.\n" +
+                        "- **!game help** => Get help for the economy game.\n" +
                         "", true)
                 .setFooter("Thank you, " + e.getAuthor().getName() + "!");
 

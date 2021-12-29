@@ -140,7 +140,7 @@ public class GameSystem extends ListenerAdapter {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        } else if (e.getMessage().getContentRaw().equalsIgnoreCase("!game help") || e.getMessage().getContentRaw().equalsIgnoreCase("!gh")) {
+        } else if (e.getMessage().getContentRaw().equalsIgnoreCase("!game help") || e.getMessage().getContentRaw().equalsIgnoreCase("!gh") || e.getMessage().getContentRaw().equalsIgnoreCase("!game")) {
 
             // create embed message to send with cyan color set the title as "Game Help • Biology Bot" and set footer as "Thank you, " e.getAuthor().getName() + "!"
             EmbedBuilder eb = new EmbedBuilder()
