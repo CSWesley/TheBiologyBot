@@ -13,6 +13,7 @@ public class BiologyBot {
     public static void main(String[] args) {
 
         String token = "";
+        // token should work now.
 
         // loop through all the environment variables and make a variable for each one
         for (String env : System.getenv().keySet()) {
