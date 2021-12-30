@@ -20,7 +20,14 @@ public class GameSystem extends ListenerAdapter {
     public String getUsername(String id) throws FileNotFoundException {
         Scanner readFile = new Scanner(file);
 
-        return readFile.findInLine(id);
+        while (readFile.hasNextLine()) {
+            String line = readFile.nextLine();
+            if (line.startsWith(id)) {
+                return "exists";
+            }
+        }
+
+        return null;
     }
 
     public void addBioPoints(String userID, int amount) throws IOException {
@@ -189,7 +196,7 @@ public class GameSystem extends ListenerAdapter {
 
                         } else {
                             // tell user they can't get daily reward yet.
-                            e.getChannel().sendMessage("You can't get your daily reward yet! You have to wait 24 hours.").queue();
+                            e.getChannel().sendMessage("You can't get your daily reward yet! You have to wait 24 hours between each daily reward.").queue();
                         }
 
                     } catch (Exception ex) {
@@ -232,6 +239,4 @@ public class GameSystem extends ListenerAdapter {
 
         return null;
     }
-
-    // TODO: make a shop.
 }
