@@ -155,10 +155,11 @@ public class GameSystem extends ListenerAdapter {
                     .setColor(Color.CYAN)
                     .addField("How to Play", "\n" +
                             "\n" +
-                            "**!start** - Starts a game for user.\n" +
-                            "**!daily** - Collect your daily reward of BioPoints (Resets every 24 hours).\n" +
-                            "**!balance** - View your total BioPoints.\n" +
-                            "**!quit** - Destroys all your stats and BioPoints.\n" +
+                            "**!start** => Starts a game for user.\n" +
+                            "**!daily** => Collect your daily reward of BioPoints (Resets every 24 hours).\n" +
+                            "**!shop help** => Sends help on how the shop works.\n" +
+                            "**!balance** => View your total BioPoints.\n" +
+                            "**!quit** => Destroys all your stats and BioPoints.\n" +
                             "\n" +
                             "**Please suggest some features to add if you'd like! (DM or ping Wesley_#0145)**\n", false)
                     .setFooter("Thank you, " + e.getAuthor().getName() + "!");
