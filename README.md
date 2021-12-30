@@ -1,4 +1,4 @@
 # BiologyBot
 Repository for biology Discord bot
 
-IT'S NOT WORKING :( I'LL FIX IT SOON I PROMISE!!
+Built with an economy/game type thing. My most detailed bot with general commands to economy commands. Start your economy with `!start`!
