@@ -3,6 +3,7 @@ import Commands.Help;
 import Commands.Info;
 import Commands.StudyGuide;
 import Game.GameSystem;
+import Game.Shop.ShopHelp;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -26,7 +27,7 @@ public class BiologyBot {
 
 
         JDABuilder jdaBuilder = JDABuilder.createDefault(token).setActivity(Activity.playing("Helping with Biology class!"));
-        jdaBuilder.addEventListeners(new Help(), new Aliases(), new StudyGuide(), new GameSystem(), new Info());
+        jdaBuilder.addEventListeners(new Help(), new Aliases(), new StudyGuide(), new GameSystem(), new Info(), new ShopHelp());
         JDA jda = null;
         try {
 

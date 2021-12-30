@@ -173,8 +173,6 @@ public class GameSystem extends ListenerAdapter {
                         long difference = currentTime - lastTime;
 
                         if (Long.toString(lastTime).equals("0")) {
-                            // TODO give user daily reward.
-
                             // add to user's bio points.
                             addBioPoints(Long.toString(e.getAuthor().getIdLong()), 100);
 
@@ -183,8 +181,6 @@ public class GameSystem extends ListenerAdapter {
                             setTimeFromLastDaily(Long.toString(e.getAuthor().getIdLong()));
 
                         } else if (difference > 86400000) {
-                            // TODO give user daily reward.
-
                             addBioPoints(Long.toString(e.getAuthor().getIdLong()), 100);
 
                             e.getChannel().sendMessage("You have collected your daily reward of `100 BioPoints`!").queue();
@@ -202,7 +198,39 @@ public class GameSystem extends ListenerAdapter {
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
+        } else if (e.getMessage().getContentRaw().equalsIgnoreCase("!balance") || e.getMessage().getContentRaw().equalsIgnoreCase("!bal")) {
+            try {
+                // check if user has started game. if yes, get their bio points. if no, tell user to start game.
+                if (getUsername(Long.toString(e.getAuthor().getIdLong())) == null) {
+                    e.getChannel().sendMessage("You need to start your game first! Do `!start`").queue();
+                } else {
+                    e.getChannel().sendMessage("You have `" + getBioPoints(Long.toString(e.getAuthor().getIdLong())) + " BioPoints`!").queue();
+                }
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         }
+    }
+
+    private String getBioPoints(String userID) {
+        // read the saves.txt file and get the bio points.
+        try {
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+
+                if (line.contains(userID)) {
+                    String[] split = line.split(",");
+
+                    return split[1];
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 
     // TODO: make a shop.

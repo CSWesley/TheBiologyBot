@@ -17,7 +17,9 @@ public class Aliases extends ListenerAdapter {
                 .addField("Commands", "Here are the commands!\n\n" +
                         "**!study guide** can be abbreviated to **!sg**.\n" +
                         "**!help** can be abbreviated to **!h**.\n" +
-                        "**!game help** can be abbreviated to **!gh** or **!game**.\n", true)
+                        "**!game help** can be abbreviated to **!gh** or **!game**.\n" +
+                        "**!balance** can be abbreviated to **!bal**\n" +
+                        "**!shop help** can be abbreviated to **!sh**", true)
                 .setFooter("Thank you, " + e.getAuthor().getName() + "!");
 
 
