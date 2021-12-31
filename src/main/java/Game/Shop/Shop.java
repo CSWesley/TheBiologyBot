@@ -2,11 +2,11 @@ package Game.Shop;
 
 public interface Shop {
 
-    void getPrice();
+    int getPrice();
 
-    void getName();
+    String getName();
 
-    void getDescription();
+    String getDescription();
 
-    void getQuantity();
+    long getId();
 }

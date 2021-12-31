@@ -3,6 +3,8 @@ import Commands.Help;
 import Commands.Info;
 import Commands.StudyGuide;
 import Game.GameSystem.*;
+import Game.Shop.DescOfItem;
+import Game.Shop.Operations.Buy;
 import Game.Shop.ShopHelp;
 import Game.Shop.ShopItems;
 import net.dv8tion.jda.api.JDA;
@@ -27,7 +29,7 @@ public class BiologyBot {
         // Maybe add a pet shop/store or something like that?
 
         JDABuilder jdaBuilder = JDABuilder.createDefault(token).setActivity(Activity.playing("Helping with Biology class!"));
-        jdaBuilder.addEventListeners(new Help(), new Aliases(), new StudyGuide(), new GameSystem(), new Info(), new ShopHelp(), new ShopItems(), new GameHelp(), new DailyReward(), new Balance(), new StartEcon());
+        jdaBuilder.addEventListeners(new Help(), new Aliases(), new DescOfItem(), new Buy(), new StudyGuide(), new GameSystem(), new Info(), new ShopHelp(), new ShopItems(), new GameHelp(), new DailyReward(), new Balance(), new StartEcon());
         JDA jda = null;
         try {
             jdaBuilder.build();

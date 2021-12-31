@@ -13,7 +13,7 @@ public class StartEcon extends ListenerAdapter {
             try {
                 long id = e.getAuthor().getIdLong();
 
-                if (gs.getUsername(Long.toString(id)) == null) {
+                if (!gs.getUsername(Long.toString(id))) {
                     // User doesn't exist do create user
                     gs.createUser(id);
                     e.getChannel().sendMessage("Welcome to the game " + e.getMember().getEffectiveName() + "!").queue();

@@ -14,24 +14,39 @@ public class GameSystem extends ListenerAdapter {
     // note to self: check discord for answers to question.
     File file = new File(System.getProperty("user.dir") + "/src/main/java/Game/saves.txt");
 
-    public String getUsername(String id) throws FileNotFoundException {
+    public boolean getUsername(String id) throws FileNotFoundException {
         Scanner readFile = new Scanner(file);
 
         while (readFile.hasNextLine()) {
             String line = readFile.nextLine();
             if (line.startsWith(id)) {
-                return "exists";
+                return true;
             }
         }
 
-        return null;
+        return false;
     }
 
-    public void addBioPoints(String userID, int amount) throws IOException {
-        // first get the time from last daily.
+    public void addDailyReward(String userID, int amount) throws IOException {
         // replace that with the new one, which is the current time.
         String time = Long.toString(System.currentTimeMillis());
 
+        Scanner scanner = new Scanner(file);
+
+        StringBuilder fullFile = new StringBuilder();
+
+        while (scanner.hasNextLine()) {
+            fullFile.append(scanner.nextLine()).append("\n");
+        }
+        // fullfile now has all the details in the file.
+        int amountt = Integer.parseInt(getCurrentBalance(userID)) + amount;
+        String newAmount = Integer.toString(amountt);
+
+        Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastAction(userID) + "," + getCurrentBalance(userID), userID + ": " + time + "," + newAmount)), Charset.defaultCharset());
+    }
+
+    public void addBioPoints(String userID, int amount) throws IOException {
+        // replace that with the new one, which is the current time.
         Scanner scanner = new Scanner(file);
 
         StringBuilder fullFile = new StringBuilder();
@@ -43,7 +58,28 @@ public class GameSystem extends ListenerAdapter {
         int amountt = Integer.parseInt(getCurrentBalance(userID)) + amount;
         String newAmount = Integer.toString(amountt);
 
-        Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastDaily(userID) + "," + getCurrentBalance(userID), userID + ": " + time + "," + newAmount)), Charset.defaultCharset());
+        Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastAction(userID) + "," + getCurrentBalance(userID), userID + ": " + getTimeFromLastAction(userID) + "," + newAmount)), Charset.defaultCharset());
+    }
+
+    public void removeBioPoints(String userID, int amount) throws IOException {
+        // scanner to read file.
+        Scanner scanner = new Scanner(file);
+
+        // stringbuilder to build new file.
+        StringBuilder fullFile = new StringBuilder();
+
+        // while there is a line in the file.
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            fullFile.append(line).append("\n");
+        }
+
+        int amountt = Integer.parseInt(getCurrentBalance(userID)) - amount;
+        String newAmount = Integer.toString(amountt);
+
+        // write the new file.
+        Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastAction(userID) + "," + getCurrentBalance(userID), userID + ": " + getTimeFromLastAction(userID) + "," + newAmount)), Charset.defaultCharset());
+
     }
 
     public String getCurrentBalance(String userID) throws FileNotFoundException {
@@ -81,7 +117,7 @@ public class GameSystem extends ListenerAdapter {
         Files.write(file.toPath(), Collections.singleton(fullFile + "\n" + id + ": 0,0\n"), Charset.defaultCharset());
     }
 
-    public String getTimeFromLastDaily(String userID) throws FileNotFoundException {
+    public String getTimeFromLastAction(String userID) throws FileNotFoundException {
         Scanner readFile = new Scanner(file);
 
         ArrayList<String> stuff = new ArrayList<>();
@@ -108,7 +144,7 @@ public class GameSystem extends ListenerAdapter {
         return userDetailsArray[0];
     }
 
-    public void setTimeFromLastDaily(String userID) throws IOException {
+    public void setTimeFromLastAction(String userID) throws IOException {
         // first get the time from last daily.
         // replace that with the new one, which is the current time.
         String time = Long.toString(System.currentTimeMillis());
@@ -121,10 +157,10 @@ public class GameSystem extends ListenerAdapter {
             fullFile.append(scanner.nextLine());
         }
 
-        Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastDaily(userID) + ",", userID + ": " + time + ",")), Charset.defaultCharset());
+        Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastAction(userID) + ",", userID + ": " + time + ",")), Charset.defaultCharset());
     }
 
-    String getBioPoints(String userID) {
+    public String getBioPoints(String userID) {
         // read the saves.txt file and get the bio points.
         try {
             Scanner scanner = new Scanner(file);

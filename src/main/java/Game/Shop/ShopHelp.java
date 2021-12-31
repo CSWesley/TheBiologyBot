@@ -18,9 +18,10 @@ public class ShopHelp extends ListenerAdapter {
                     .setColor(Color.CYAN)
                     .addField("Shop Commands", "\n" +
                             "**!shop** => Displays a list of available items in the shop.\n" +
-                            "**!buy [item]** => Allows you to purchase an item using BioPoints.\n" +
-                            "**!sell [item]** => Allows you to sell an item and get the BioPoints you paid for back.\n" +
-                            "**!create item [name] [price]** => Allows you to create an item and set a name and price.", true)
+                            "**!buy [item]** => Allows you to purchase an item using BioPoints. (!buy bluerole)\n" +
+                            "**!sell [item]** => Allows you to sell an item and get the BioPoints you paid for back. (!sell bluerole)\n" +
+                            "**!description [item]** => Gives a description of a given item. (!description bluerole)\n" +
+                            "**!create item [name] [price]** => Allows you to create an item and set a name and price. (!create item redFlute 150)", true)
                     .setFooter("Thank you, " + e.getAuthor().getName() + "!");
 
             e.getAuthor().openPrivateChannel().queue((channel) -> channel.sendMessage(eb.build()).queue());

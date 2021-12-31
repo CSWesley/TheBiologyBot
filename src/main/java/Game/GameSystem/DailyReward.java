@@ -14,30 +14,30 @@ public class DailyReward extends ListenerAdapter {
 
         if (e.getMessage().getContentRaw().equalsIgnoreCase("!daily")) {
             try {
-                if (gs.getUsername(Long.toString(e.getAuthor().getIdLong())) == null) {
+                if (!gs.getUsername(Long.toString(e.getAuthor().getIdLong()))) {
                     e.getChannel().sendMessage("You need to start your game first! Do `!start`").queue();
                 } else
                     try {
                         long currentTime = System.currentTimeMillis();
 
-                        long lastTime = Long.parseLong(gs.getTimeFromLastDaily(Long.toString(e.getAuthor().getIdLong())));
+                        long lastTime = Long.parseLong(gs.getTimeFromLastAction(Long.toString(e.getAuthor().getIdLong())));
 
                         long difference = currentTime - lastTime;
 
                         if (Long.toString(lastTime).equals("0")) {
                             // add to user's bio points.
-                            gs.addBioPoints(Long.toString(e.getAuthor().getIdLong()), 100);
+                            gs.addDailyReward(Long.toString(e.getAuthor().getIdLong()), 100);
 
                             e.getChannel().sendMessage("You have collected your daily reward of `100 BioPoints`! It's your first one too!").queue();
 
-                            gs.setTimeFromLastDaily(Long.toString(e.getAuthor().getIdLong()));
+                            gs.setTimeFromLastAction(Long.toString(e.getAuthor().getIdLong()));
 
                         } else if (difference > 86400000) {
                             gs.addBioPoints(Long.toString(e.getAuthor().getIdLong()), 100);
 
                             e.getChannel().sendMessage("You have collected your daily reward of `100 BioPoints`!").queue();
 
-                            gs.setTimeFromLastDaily(Long.toString(e.getAuthor().getIdLong()));
+                            gs.setTimeFromLastAction(Long.toString(e.getAuthor().getIdLong()));
 
                         } else {
                             // tell user they can't get daily reward yet.
