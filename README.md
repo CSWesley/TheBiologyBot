@@ -26,6 +26,10 @@ $300
 This flower has a distinct, apple scented smell, and is highly sought after by collectors.
 $200
 
+`Dragon’s Blood Tree`:
+From beneath, the foliage resembles the base of a mushroom!
+$100
+
 ### Make more economy commands:
 1. `!rob [user]` => Robs a user with 50% chance of success and a random number of BioPoints
    from the users balance. If the user has not started a game, they cannot be robbed. Cool down
