@@ -52,7 +52,7 @@ public class GameSystem extends ListenerAdapter {
         StringBuilder fullFile = new StringBuilder();
 
         while (scanner.hasNextLine()) {
-            fullFile.append(scanner.nextLine());
+            fullFile.append(scanner.nextLine()).append("\n");
         }
         // fullfile now has all the details in the file.
         int amountt = Integer.parseInt(getCurrentBalance(userID)) + amount;
@@ -154,7 +154,7 @@ public class GameSystem extends ListenerAdapter {
         StringBuilder fullFile = new StringBuilder();
 
         while (scanner.hasNextLine()) {
-            fullFile.append(scanner.nextLine());
+            fullFile.append(scanner.nextLine()).append("\n");
         }
 
         Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastAction(userID) + ",", userID + ": " + time + ",")), Charset.defaultCharset());
