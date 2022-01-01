@@ -58,6 +58,7 @@ public class GameSystem extends ListenerAdapter {
         int amountt = Integer.parseInt(getCurrentBalance(userID)) + amount;
         String newAmount = Integer.toString(amountt);
 
+
         Files.write(file.toPath(), Collections.singleton(fullFile.toString().replace(userID + ": " + getTimeFromLastAction(userID) + "," + getCurrentBalance(userID), userID + ": " + getTimeFromLastAction(userID) + "," + newAmount)), Charset.defaultCharset());
     }
 
