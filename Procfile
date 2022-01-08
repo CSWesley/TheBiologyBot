@@ -1,0 +1,1 @@
+worker: java -jar build/libs/JavaClub-1.0-all.jar
